@@ -1,6 +1,9 @@
 import Display from './modules/display';
 import API from './modules/api';
 
-API.getData('Budapest');
+async function getCurrent(location = 'Budapest') {
+  const currentweather = await API.getCurrent(location);
+  console.log(currentweather);
+}
 
-
+getCurrent('Portland');
