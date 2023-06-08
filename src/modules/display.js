@@ -1,3 +1,4 @@
+import Main from './main';
 import '../styles/style.css';
 
 export default class Display {
@@ -27,7 +28,7 @@ export default class Display {
 
     header.innerHTML = `
     <form id="search" action="#" method="get">
-    <input type="text" name="loc">
+    <input type="text" name="location">
     <button class="search">Go</button>
     </form>
     `;
@@ -59,22 +60,26 @@ export default class Display {
   static loadLoadingAnim() {
     const main = document.querySelector('.main');
     main.innerHTML = `
-    
+    Loading...
     `;
   }
 
   // input handlers
 
   static handleSearch(e) {
-    
+    e.preventDefault();
+    const form = document.getElementById("search");
+    if (form.location.value != null) {
+      Display.loadLoadingAnim();
+      Main.getWeather(form.location.value);
+form.prevent
+    }
   }
-
 
   // add event listeners
 
   static addListeners() {
     const searchButton = document.querySelector('.search');
-
     searchButton.addEventListener('click', Display.handleSearch);
   }
   

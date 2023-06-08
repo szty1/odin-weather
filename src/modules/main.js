@@ -7,10 +7,10 @@ export default class Main {
 
   static init() {
     Display.loadPage();
-    Main.getWeather('Portland');
   }
 
   static async getWeather(location) {
+    console.log(location);
     const forecast = await API.getForecast(location);
     if ('error' in forecast) {
       Display.loadError(forecast.error);
