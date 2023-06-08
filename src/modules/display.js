@@ -2,6 +2,8 @@ import '../styles/style.css';
 
 export default class Display {
 
+  static metric = true;
+
   static loadPage() {
     Display.loadPageSkeleton();
     Display.loadHeader();
@@ -38,17 +40,19 @@ export default class Display {
     `;
   }
 
-  static loadWeather(data, metric = true) {
+  static loadWeather(data) {
     const main = document.querySelector('.main');
     main.innerHTML = `
-    
+    <span>${data.name}, ${(data.country === 'United States of America') ? data.region : data.country }</span>
+    <img src="https:${data.icon}"><span>${Display.metric ? data.temp_c : temp_f} ${Display.metric ? "°C": "°F"}</span>
+
     `;
   }
 
   static loadError(error) {
     const main = document.querySelector('.main');
     main.innerHTML = `
-    
+    <span>${error.message}</span>
     `;
   }
 

@@ -8,7 +8,7 @@ export default class API {
       const responseData = await response.json();
       return responseData;
     } catch (error) {
-      return { code: error.name, message: error.message };
+      return { error: {code: error.name, message: error.message}};
     }
   }
 
@@ -18,7 +18,7 @@ export default class API {
       const responseData = await response.json();
       return responseData;
     } catch (error) {
-      return { code: error.name, message: error.message };
+      return { error: {code: error.name, message: error.message}};
     }
   }
   
