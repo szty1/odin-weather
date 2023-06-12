@@ -38,7 +38,8 @@ export default class Display {
   static loadFooter() {
     const footer = document.querySelector('.footer');
     footer.innerHTML = `
-    
+    <span><i class="fa-solid fa-umbrella"></i> WEATHER by szty1 for Odin Project</span>
+
     `;
   }
 
