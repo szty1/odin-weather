@@ -51,13 +51,18 @@ export default class Display {
     <span>${data.name}, ${(data.country === 'United States of America') ? data.region : data.country }</span>
     </div>
     <div class="current">
+    <div>
     <img class="currenticon" src="https:${data.icon}">
+    </div>
+    <div>
     <span class="currenttemp">${Display.metric ? data.temp_c : temp_f} ${Display.metric ? "°C": "°F"}</span>
-    <span class="currenttext">${data.text}</span>
-    <span class="feelslike">Feels like: ${Display.metric ? data.feelsLike_c : feelsLike_f} ${Display.metric ? "°C": "°F"}</span>
+    </div>
+    <div>
     <span class="wind"><i class="fa-solid fa-wind"></i> ${data.windDirection} ${Display.metric ? data.windSpeed_kph : windSpeed_mph} ${Display.metric ? "km / h": "mph"}</span>
     <span class="humidity"><i class="fa-solid fa-droplet"></i> ${data.humidity}%</span>
     </div>
+    </div>
+    <div class="forecast">
     `
     data.forecast.forEach(forecastday => {
       htmlOutput += `
@@ -69,6 +74,8 @@ export default class Display {
         </div>
       `
     });
+
+    htmlOutput += `</div>`;
 
     main.innerHTML = htmlOutput;
   }

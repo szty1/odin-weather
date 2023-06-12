@@ -31,6 +31,7 @@ export default class Main {
       feelsLike_c: Math.round(data.current.feelslike_c),
       feelsLike_f: Math.round(data.current.feelslike_f),
       icon: data.current.condition.icon,
+      code: data.current.condition.code,
       text: data.current.condition.text,
       humidity: data.current.humidity,
       windDirection: data.current.wind_dir,
