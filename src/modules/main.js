@@ -16,9 +16,7 @@ export default class Main {
     if ('error' in forecast) {
       Display.loadError(forecast.error);
     } else {
-      console.log(forecast);
       this.currentdata = Main.processData(forecast);
-      console.log(this.currentdata);
       Display.loadWeather(this.currentdata);
     }
   }
