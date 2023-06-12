@@ -74,3 +74,46 @@ body {
   color: #ffffff99;
 }
 
+.main {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  margin: 40px 0 0 0;
+}
+
+.main .location {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.forecast {
+  display: flex;
+  align-items: center;
+}
+
+.current {
+  display: grid;
+  grid-template-columns: 64px 1fr 1fr;
+}
+
+.current div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
+.currenttemp {
+  font-size: 80px;
+  font-weight: 600;
+  margin-right: 40px;
+}
+
+
+
+
+
+
+
