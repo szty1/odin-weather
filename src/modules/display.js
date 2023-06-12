@@ -1,5 +1,6 @@
 import Main from './main';
 import '../styles/style.css';
+import { format, parseISO } from 'date-fns';
 
 export default class Display {
 
@@ -43,11 +44,32 @@ export default class Display {
 
   static loadWeather(data) {
     const main = document.querySelector('.main');
-    main.innerHTML = `
-    <span>${data.name}, ${(data.country === 'United States of America') ? data.region : data.country }</span>
-    <img src="https:${data.icon}"><span>${Display.metric ? data.temp_c : temp_f} ${Display.metric ? "°C": "°F"}</span>
 
-    `;
+    let htmlOutput = `
+    <div class="location">
+    <span>${data.name}, ${(data.country === 'United States of America') ? data.region : data.country }</span>
+    </div>
+    <div class="current">
+    <img class="currenticon" src="https:${data.icon}">
+    <span class="currenttemp">${Display.metric ? data.temp_c : temp_f} ${Display.metric ? "°C": "°F"}</span>
+    <span class="currenttext">${data.text}</span>
+    <span class="feelslike">Feels like: ${Display.metric ? data.feelsLike_c : feelsLike_f} ${Display.metric ? "°C": "°F"}</span>
+    <span class="wind"><i class="fa-solid fa-wind"></i> ${data.windDirection} ${Display.metric ? data.windSpeed_kph : windSpeed_mph} ${Display.metric ? "km / h": "mph"}</span>
+    <span class="humidity"><i class="fa-solid fa-droplet"></i> ${data.humidity}%</span>
+    </div>
+    `
+    data.forecast.forEach(forecastday => {
+      htmlOutput += `
+        <div class="forecastday">
+        <span class="forecastdate">${format(parseISO(forecastday.date), "EEE")}</span>
+        <img class="forecasticon" src="https:${forecastday.icon}">
+        <span class="forecatsmin">${Display.metric ? forecastday.min_c: forecastday.min_f} ${Display.metric ? "°C": "°F"}</span>
+        <span class="forecatsmax">${Display.metric ? forecastday.max_c: forecastday.max_f} ${Display.metric ? "°C": "°F"}</span>
+        </div>
+      `
+    });
+
+    main.innerHTML = htmlOutput;
   }
 
   static loadError(error) {

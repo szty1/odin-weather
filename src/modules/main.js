@@ -7,6 +7,7 @@ export default class Main {
 
   static init() {
     Display.loadPage();
+    Main.getWeather('Budapest');
   }
 
   static async getWeather(location) {
@@ -17,6 +18,7 @@ export default class Main {
     } else {
       console.log(forecast);
       this.currentdata = Main.processData(forecast);
+      console.log(this.currentdata);
       Display.loadWeather(this.currentdata);
     }
   }
@@ -46,7 +48,6 @@ export default class Main {
         max_c: Math.round(forecastday.day.maxtemp_c),
         max_f: Math.round(forecastday.day.maxtemp_f),
         icon: forecastday.day.condition.icon,
-        text: forecastday.day.condition.text,
       });
     })
     return processedData;
