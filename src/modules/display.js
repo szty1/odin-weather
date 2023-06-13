@@ -32,6 +32,7 @@ export default class Display {
     <input type="text" name="location">
     <button class="search">Go</button>
     </form>
+    
     `;
   }
 
@@ -55,11 +56,14 @@ export default class Display {
     <img class="currenticon" src="https:${data.icon}">
     </div>
     <div>
-    <span class="currenttemp">${Display.metric ? data.temp_c : temp_f} ${Display.metric ? "°C": "°F"}</span>
+    <span class="currenttemp">${Display.metric ? data.temp_c : temp_f}${Display.metric ? "°C": "°F"}</span>
+    <span class="currenttext">${data.text}</span>
     </div>
     <div>
-    <span class="wind"><i class="fa-solid fa-wind"></i> ${data.windDirection} ${Display.metric ? data.windSpeed_kph : windSpeed_mph} ${Display.metric ? "km / h": "mph"}</span>
-    <span class="humidity"><i class="fa-solid fa-droplet"></i> ${data.humidity}%</span>
+    <span class="feelslike">Feels Like: ${Display.metric ? data.feelsLike_c : feelsLike_f}${Display.metric ? "°C": "°F"}</span>
+    <span class="rain">UV Index: ${ data.uv}</span>
+    <span class="wind">Wind: ${data.windDirection} ${Display.metric ? data.windSpeed_kph : windSpeed_mph} ${Display.metric ? "km / h": "mph"}</span>
+    <span class="humidity">Humidity: ${data.humidity}%</span>
     </div>
     </div>
     <div class="forecast">
@@ -69,8 +73,10 @@ export default class Display {
         <div class="forecastday">
         <span class="forecastdate">${format(parseISO(forecastday.date), "EEE")}</span>
         <img class="forecasticon" src="https:${forecastday.icon}">
-        <span class="forecatsmin">${Display.metric ? forecastday.min_c: forecastday.min_f} ${Display.metric ? "°C": "°F"}</span>
-        <span class="forecatsmax">${Display.metric ? forecastday.max_c: forecastday.max_f} ${Display.metric ? "°C": "°F"}</span>
+        <div class="highlow">
+        <span class="forecastmax">${Display.metric ? forecastday.max_c: forecastday.max_f}${Display.metric ? "°C": "°F"}</span>
+        <span class="forecastmin">${Display.metric ? forecastday.min_c: forecastday.min_f}${Display.metric ? "°C": "°F"}</span>
+        </div>
         </div>
       `
     });
