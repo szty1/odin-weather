@@ -11,11 +11,11 @@ export default class Main {
   }
 
   static async getWeather(location) {
-    console.log(location);
     const forecast = await API.getForecast(location);
     if ('error' in forecast) {
       Display.loadError(forecast.error);
     } else {
+      console.log(forecast);
       this.currentdata = Main.processData(forecast);
       Display.loadWeather(this.currentdata);
     }
@@ -37,6 +37,8 @@ export default class Main {
       windDirection: data.current.wind_dir,
       windSpeed_kph: Math.round(data.current.wind_kph),
       windSpeed_mph: Math.round(data.current.wind_mph),
+      uv: data.current.uv,
+      isday: data.current.id_day,
       forecast: [],
     };
     data.forecast.forecastday.forEach(forecastday => {
